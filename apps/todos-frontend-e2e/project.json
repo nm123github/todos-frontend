@@ -1,0 +1,9 @@
+{
+  "name": "todos-frontend-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/todos-frontend-e2e/src",
+  "implicitDependencies": ["todos-frontend"],
+  "// targets": "to see all targets run: nx show project todos-frontend-e2e --web",
+  "targets": {}
+}
