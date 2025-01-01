@@ -34,6 +34,17 @@ yarn-error.log
 testem.log
 /typings
 
+# Ignore Yarn files
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# Ignore Yarn log
+.yarnrc.yml
+.yarn.lock
+
 # System Files
 .DS_Store
 Thumbs.db
