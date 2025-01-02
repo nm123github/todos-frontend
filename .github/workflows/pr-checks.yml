@@ -21,10 +21,11 @@ jobs:
           node-version: 23.5.0
           cache: 'yarn'
 
-      # Install the required Yarn version (from package.json)
-      - name: Install Yarn 4.5.3
+      # Enable and use Corepack
+      - name: Setup Corepack
         run: |
-          npm install -g yarn@4.5.3
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
 
       # Install dependencies
       - name: Install dependencies
@@ -49,10 +50,11 @@ jobs:
           node-version: 23.5.0
           cache: 'yarn'
 
-      # Install the required Yarn version (from package.json)
-      - name: Install Yarn 4.5.3
+      # Enable and use Corepack
+      - name: Setup Corepack
         run: |
-          npm install -g yarn@4.5.3
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
 
       # Install dependencies
       - name: Install dependencies
