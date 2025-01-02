@@ -46,8 +46,6 @@ jobs:
         with:
           flag-name: Unit Test Coverage
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          format: lcov
-          file: coverage/apps/todos-frontend/lcov.info
 
   lint:
     name: Lint
