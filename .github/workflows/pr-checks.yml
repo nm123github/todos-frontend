@@ -15,17 +15,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Set up Node.js
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 23.5.0
-          cache: 'yarn'
-
       # Enable and use Corepack
       - name: Setup Corepack
         run: |
           corepack enable
           corepack prepare yarn@4.5.3 --activate
+
+      # Set up Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23.5.0
+          cache: 'yarn'
 
       # Install dependencies
       - name: Install dependencies
@@ -44,17 +44,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Set up Node.js
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 23.5.0
-          cache: 'yarn'
-
       # Enable and use Corepack
       - name: Setup Corepack
         run: |
           corepack enable
           corepack prepare yarn@4.5.3 --activate
+
+      # Set up Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23.5.0
+          cache: 'yarn'
 
       # Install dependencies
       - name: Install dependencies
