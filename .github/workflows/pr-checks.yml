@@ -32,8 +32,14 @@ jobs:
         run: yarn install --immutable
 
       # Run test
-      - name: Run Test
+      - name: Run Tests with Coverage
         run: yarn run test
+
+      - name: Post Coverage Report to PR
+        uses: dorny/coverage-check@v2
+        with:
+          path: coverage/apps/todos-frontend/lcov.info
+          threshold: 20
 
   lint:
     name: Lint
