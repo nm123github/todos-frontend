@@ -46,8 +46,8 @@ jobs:
         if: success() || failure() # run this step even if previous step failed
         with:
           name: Unit Tests # Name of the check run which will be created
-          path: coverage/apps/todos-frontend/lcov.info # Path to test results
-          reporter: jest-junit # Format of test results
+          path: coverage/apps/todos-frontend/coverage-final.json # Path to test results
+          reporter: jest
 
   lint:
     name: Lint
