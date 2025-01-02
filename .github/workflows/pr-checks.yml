@@ -41,13 +41,13 @@ jobs:
       - name: Run Tests with Coverage
         run: yarn run test
 
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: success() || failure() # run this step even if previous step failed
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
         with:
-          name: Unit Tests # Name of the check run which will be created
-          path: coverage/apps/todos-frontend/coverage-final.json # Path to test results
-          reporter: jest
+          flag-name: Unit Test Coverage
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          format: lcov
+          file: coverage/apps/todos-frontend/lcov.info
 
   lint:
     name: Lint
