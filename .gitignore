@@ -48,6 +48,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+web_repo_key
+web_repo_key.pub
 
 .nx/cache
 .nx/workspace-data
