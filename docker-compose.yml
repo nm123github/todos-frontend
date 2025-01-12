@@ -3,6 +3,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: web-container
     ports:
       - '4200:4200'
