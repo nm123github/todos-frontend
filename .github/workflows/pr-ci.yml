@@ -35,7 +35,7 @@ jobs:
       - name: Run Playwright Tests
         run: |
           # Use Docker to run Playwright tests inside the Web container
-          docker exec -it todos-frontend-web-1 yarn run e2e
+          docker exec todos-frontend-web-1 yarn run e2e
 
       - name: Clean Up
         run: docker compose down
