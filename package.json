@@ -8,7 +8,8 @@
     "test": "nx run-many --target=test --passWithNoTests --runInBand --coverage",
     "build": "nx build todos-frontend",
     "serve:prod": "serve -s dist/apps/todos-frontend -l 4200",
-    "serve:dev": "nx serve todos-frontend"
+    "serve:dev": "nx serve todos-frontend",
+    "e2e": "nx run todos-frontend-e2e:e2e"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",

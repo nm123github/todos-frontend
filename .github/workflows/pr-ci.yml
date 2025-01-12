@@ -1,0 +1,40 @@
+name: PR (CI) Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.API_REPO_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Checkout Web Repo
+        uses: actions/checkout@v3
+
+      - name: Checkout API Repo
+        uses: actions/checkout@v3
+        with:
+          repository: nm123github/todos-backend
+          ref: main
+          ssh-key: ${{ secrets.API_REPO_DEPLOY_KEY }}
+          path: api-repo
+
+      - name: Set up Docker Compose
+        run: |
+          docker compose -f docker-compose.yml -f api-repo/docker-compose.yml up -d
+
+      - name: Run Playwright Tests
+        run: |
+          # Use Docker to run Playwright tests inside the Web container
+          docker exec -it web-container-name yarn run e2e
+
+      - name: Clean Up
+        run: docker compose down
