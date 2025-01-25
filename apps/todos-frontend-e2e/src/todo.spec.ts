@@ -8,7 +8,7 @@ test.describe('Todo App', () => {
     await page.goto('http://localhost:4200');
 
     // Add a new task
-    const taskName = 'New Task Example';
+    const taskName = 'New Task Here';
     await page.fill('input[placeholder="Enter task name"]', taskName); // Adjust selector based on your app
     await page.click('button >> text=Add Task'); // Adjust text based on your app
 

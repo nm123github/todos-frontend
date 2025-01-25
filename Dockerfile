@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:23-bullseye
 
 RUN corepack enable \
     && corepack prepare yarn@4.5.3 --activate
@@ -6,6 +6,8 @@ RUN corepack enable \
 WORKDIR /app
 
 COPY . .
+
+RUN yarn playwright install --with-deps chromium
 
 RUN yarn install --immutable
 
