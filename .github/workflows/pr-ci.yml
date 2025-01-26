@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     env:
-      NX_TODO_BACKEND_HOST=http://localhost:8080
+      NX_TODO_BACKEND_HOST: http://localhost:8080
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
@@ -37,15 +37,15 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          yarn run install --immutable
+          yarn install --immutable
 
-      -name: Install Playwright
+      - name: Install Playwright
         run: |
           yarn playwright install --with-deps chromium
 
       - name: Run Playwright Tests
         run: |
-          yarn run e2e
+          yarn e2e
 
       - name: Clean Up
         run: docker compose down
