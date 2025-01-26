@@ -10,7 +10,7 @@ type Task = {
   dateCreated: string;
 };
 
-const API_URL = 'http://localhost:8080'; // Endpoint URL
+const API_URL = process.env.NX_TODO_BACKEND_HOST || 'http://localhost:8080'; // Endpoint URL
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);

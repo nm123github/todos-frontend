@@ -1,5 +1,7 @@
+const webpack = require('webpack');
 const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
 const { NxReactWebpackPlugin } = require('@nx/react/webpack-plugin');
+
 const { join } = require('path');
 
 module.exports = {
@@ -15,6 +17,9 @@ module.exports = {
     },
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NX_TODO_BACKEND_HOST': JSON.stringify(process.env.NX_TODO_BACKEND_HOST || ''),
+    }),
     new NxAppWebpackPlugin({
       tsConfig: './tsconfig.app.json',
       compiler: 'babel',
