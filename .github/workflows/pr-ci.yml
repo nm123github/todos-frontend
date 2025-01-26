@@ -9,8 +9,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      NX_TODO_BACKEND_HOST: host.docker.internal:8080
     steps:
       - name: Configure SSH
         run: |
@@ -31,6 +29,8 @@ jobs:
           path: api-repo
 
       - name: Set up Docker Compose
+        env:
+          NX_TODO_BACKEND_HOST: host.docker.internal:8080
         run: |
           docker compose -f docker-compose.yml -f api-repo/docker-compose.yml up -d
 

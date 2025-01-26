@@ -9,7 +9,7 @@
     "build": "nx build todos-frontend",
     "serve:prod": "serve -s dist/apps/todos-frontend -l 4200",
     "serve:dev": "nx serve todos-frontend",
-    "e2e": "nx run todos-frontend-e2e:e2e --skip-nx-cache"
+    "e2e": "nx run todos-frontend-e2e:e2e --reporter=line --skip-nx-cache"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
