@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      NX_TODO_BACKEND_HOST: http://api-container:8080
+      NX_TODO_BACKEND_HOST: http://localhost:8080
     steps:
       - name: Configure SSH
         run: |
@@ -35,9 +35,13 @@ jobs:
           # Bring up Docker Compose services
           docker compose -f docker-compose.yml -f api-repo/docker-compose.yml up -d
 
+      - name: Docker Logs
+        run: |
+          docker-compose logs
+
       - name: Wait for Backend
         run: |
-          timeout 30 bash -c 'until curl -s http://api-container:8080/task; do sleep 2; done'
+          timeout 30 bash -c 'until curl -s http://localhost:8080/task; do sleep 2; done'
 
       - name: Corepack Enable
         run: |
@@ -51,10 +55,6 @@ jobs:
       - name: Install Playwright
         run: |
           yarn playwright install --with-deps chromium
-
-      - name: Docker Logs
-        run: |
-          docker-compose logs
 
       - name: Run Playwright Tests
         run: |
