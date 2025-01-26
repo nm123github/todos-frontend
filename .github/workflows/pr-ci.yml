@@ -33,15 +33,9 @@ jobs:
       - name: Set up Docker Compose
         run: |
           # Bring up Docker Compose services
-          docker compose -f docker-compose.yml -f api-repo/docker-compose.yml up -d
-
-      - name: Docker Logs
-        run: |
-          docker compose logs
-
-      - name: Wait for Backend
-        run: |
-          timeout 30 bash -c 'until curl -s http://localhost:8080/task; do sleep 2; done'
+          docker compose up -d
+          cd api-repo
+          docker compose up -d
 
       - name: Corepack Enable
         run: |
