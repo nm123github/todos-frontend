@@ -30,8 +30,12 @@ jobs:
 
       - name: Set up Docker Compose
         env:
-          NX_TODO_BACKEND_HOST: host.docker.internal:8080
+          NX_TODO_BACKEND_HOST: host.docker.internal:8080 # Define the environment variable
         run: |
+          # Create an .env file for Docker Compose
+          echo "NX_TODO_BACKEND_HOST=${NX_TODO_BACKEND_HOST}" > .env
+
+          # Bring up Docker Compose services
           docker compose -f docker-compose.yml -f api-repo/docker-compose.yml up -d
 
       - name: Run Playwright Tests
