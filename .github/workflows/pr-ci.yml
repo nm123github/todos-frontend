@@ -37,7 +37,7 @@ jobs:
 
       - name: Docker Logs
         run: |
-          docker-compose logs
+          docker compose logs
 
       - name: Wait for Backend
         run: |
