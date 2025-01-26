@@ -8,6 +8,8 @@ on:
 
 jobs:
   test:
+    env:
+      NX_TODO_BACKEND_HOST=http://localhost:8080
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
@@ -29,19 +31,21 @@ jobs:
           path: api-repo
 
       - name: Set up Docker Compose
-        env:
-          NX_TODO_BACKEND_HOST: host.docker.internal:8080 # Define the environment variable
         run: |
-          # Create an .env file for Docker Compose
-          echo "NX_TODO_BACKEND_HOST=${NX_TODO_BACKEND_HOST}" > .env
-
           # Bring up Docker Compose services
           docker compose -f docker-compose.yml -f api-repo/docker-compose.yml up -d
 
+      - name: Install Dependencies
+        run: |
+          yarn run install --immutable
+
+      -name: Install Playwright
+        run: |
+          yarn playwright install --with-deps chromium
+
       - name: Run Playwright Tests
         run: |
-          # Use Docker to run Playwright tests inside the Web container
-          docker exec frontend-container yarn run e2e
+          yarn run e2e
 
       - name: Clean Up
         run: docker compose down

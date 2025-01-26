@@ -9,7 +9,7 @@ COPY . .
 
 RUN yarn install --immutable
 
-RUN yarn playwright install --with-deps chromium
+#RUN yarn playwright install --with-deps chromium
 
 RUN yarn run build
 
