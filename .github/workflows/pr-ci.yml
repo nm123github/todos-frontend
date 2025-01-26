@@ -8,9 +8,9 @@ on:
 
 jobs:
   test:
+    runs-on: ubuntu-latest
     env:
       NX_TODO_BACKEND_HOST: http://localhost:8080
-    runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
         run: |
