@@ -20,10 +20,10 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       - name: Checkout Web Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Checkout API Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: nm123github/todos-backend
           ref: main
@@ -33,14 +33,18 @@ jobs:
       - name: Set up Docker Compose
         run: |
           # Bring up Docker Compose services
-          docker compose up -d
-          cd api-repo
-          docker compose up -d
+          docker compose -f docker-compose.yml up -d
+          docker compose -f api-repo/docker-compose.yml up -d
 
       - name: Corepack Enable
         run: |
           # Corepack enable for yarn version 4.5.3
           corepack enable && corepack prepare yarn@4.5.3 --activate
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23.5.0
+          cache: 'yarn'
 
       - name: Install Dependencies
         run: |
@@ -55,4 +59,6 @@ jobs:
           yarn e2e
 
       - name: Clean Up
-        run: docker compose down
+        run: |
+          docker compose -f docker-compose.yml down
+          docker compose -f api-repo/docker-compose.yml down
