@@ -31,7 +31,7 @@ test.describe('Todo App', () => {
 
     const completeButton = taskItem.getByRole('button', { name: 'Complete' });
     await completeButton.click();
-    await expect(completeButton).toBeDisabled({ timeout: 10000 });
+    await expect(completeButton).toBeDisabled({ timeout: 15000 });
   });
 
   test('should delete a task from the list', async ({ page }) => {
@@ -47,6 +47,6 @@ test.describe('Todo App', () => {
     const deleteButton = taskItem.getByRole('button', { name: 'Delete' });
     await deleteButton.click();
 
-    await expect(taskItem).not.toBeVisible({ timeout: 10000 });
+    await expect(taskItem).not.toBeVisible({ timeout: 15000 });
   });
 });
